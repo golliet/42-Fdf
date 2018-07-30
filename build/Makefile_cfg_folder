@@ -1,0 +1,3 @@
+CORE      = core
+
+SRCCORE     =  parse.c main.c 
