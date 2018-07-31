@@ -1,9 +1,0 @@
-
-SRCSCORE        = 	$(addprefix $(CORE)/, $(SRCCORE))
-
-SRC 		    =   $(SRCSCORE)
-
-OBJ 		= 	$(SRC:%.c=%.o)
-
-SRCS 		= 	$(addprefix $(SRCSDIR)/, $(SRC))
-OBJS 		= 	$(addprefix $(OBJSDIR)/, $(OBJ))

@@ -1,7 +1,0 @@
-$(OBJSDIR)/$(CORE)/%.o: $(SRCSDIR)/$(CORE)/%.c $(HEADERS)
-	@$(CC) -c -o $@ $< -I$(INCLUDES) -I$(HEADERLIB)
-	@echo "${RED}█${RESET}\c"
-
-$(OBJSDIR):
-	@mkdir -p $(OBJSDIR)/$(CORE);
-	@echo "\nCompiling $(NAME)${RESET} [${GREEN}✔${RESET}]"
