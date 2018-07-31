@@ -4,11 +4,29 @@
 # include "../libft/includes/libft.h"
 # include <stdio.h>
 # include <fcntl.h>
-# include <mlx.h>
+//# include <mlx.h>
+# include <math.h>
 
 /*
 ** structure
 */
+
+typedef struct			s_img
+{
+	unsigned char		*zone_mem;
+	int					bit_p; // nombre d'octet par pixel
+	int					endian; // endian
+	int					size_line; // taille en octet d'une ligne en pixel
+	int					x;
+	int 				y;
+}						t_img;
+
+typedef struct			s_color
+{
+	int					red;
+	int					green;
+	int					blue;
+}						t_color;
 
 typedef struct 			s_point
 {
@@ -22,20 +40,42 @@ typedef struct			s_list
 	int					x;
 	int					y;
 	int					z;
+	t_point				true_coord;
 	struct s_list		*next;
 	struct s_list		*prev;
 }						t_list;
+
+typedef struct			s_parse
+{
+	int					nb_elem_line;
+	int					nb_line;
+}						t_parse;
 
 /*
 ** Parsing
 */
 
-int			ft_parse(char *str, t_list **list);
+int				ft_parse(char *str, t_list **list, t_parse *parse);
 
 /*
 ** List
 */
 
-void		ft_add(int x, int y, int z, t_list **list);
+void			ft_add(int x, int y, int z, t_list **list);
+t_list			***ft_fill_tab(t_parse parse, t_list **list);
+
+/*
+** Draw
+*/
+
+void			ft_draw_line(t_img *img, t_color color, t_point a, t_point b);
+
+
+/*
+** Calcul
+*/
+
+int				triangle(t_point p1, t_point p2);
+double			calc_length(int x1, int y1, int x2, int y2);
 
 #endif

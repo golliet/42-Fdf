@@ -29,7 +29,7 @@ static int		ft_lin_is_good(char *str)
 	return (1);
 }
 
-static void		ft_add_list(char *str, t_list **list, int y)
+static int		ft_add_list(char *str, t_list **list, int y)
 {
 	int i;
 	int nb;
@@ -49,13 +49,15 @@ static void		ft_add_list(char *str, t_list **list, int y)
 			x++;
 		}
 	}
+	return (x);
 }
 
-static void		ft_open(char *str, t_list **list)
+static void		ft_open(char *str, t_list **list, t_parse *parse)
 {
 	int 	fd;
 	int 	y;
 	char	*lin;
+	int		x;
 
 	y = 0;
 	if (((fd = open(str, O_RDONLY))) == -1)
@@ -73,20 +75,22 @@ static void		ft_open(char *str, t_list **list)
 			ft_putstr("fsdfsdf\n");
 			exit(0);
 		}
-		ft_add_list(lin, list, y);
+		x = ft_add_list(lin, list, y);
+		parse->nb_elem_line = (x > parse->nb_elem_line) ? x : parse->nb_elem_line;
 		free(lin);
 		y++;
 	}
+	parse->nb_line = y;
 	close(fd);
 }
 
-int		ft_parse(char *str, t_list **list)
+int		ft_parse(char *str, t_list **list, t_parse *parse)
 {
 	int len;
 
 	len = ft_strlen(str);
 	if (len == 0)
 		return (0);
-	ft_open(str, list);
+	ft_open(str, list, parse);
 	return (1);
 }
