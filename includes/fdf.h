@@ -4,7 +4,7 @@
 # include "../libft/includes/libft.h"
 # include <stdio.h>
 # include <fcntl.h>
-//# include <mlx.h>
+# include <mlx.h>
 # include <math.h>
 
 /*

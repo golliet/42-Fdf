@@ -30,13 +30,13 @@ int			triangle(t_point p1, t_point p2)
 	}
 }
 
-/*void		go(t_list *list)
+void		go(t_list ***tab)
 {
 	void 	*mlx_ptr;
 	void	*win_ptr;
 	void	*img_ptr;
 	t_img	img;
-	(void)list;
+	(void)tab;
 
 	mlx_ptr = mlx_init();
 	win_ptr = mlx_new_window(mlx_ptr, 500, 500, "ntm");
@@ -44,11 +44,11 @@ int			triangle(t_point p1, t_point p2)
 
 	img.zone_mem = (unsigned char *)mlx_get_data_addr(img_ptr, &img.bit_p, &img.size_line, &img.endian);
 
-	//ft_draw_line(&img, color, a, b);
+	ft_draw_line(&img, (t_color){255,255,255}, (t_point){50,50,0}, (t_point){400,400,0});
 
 	mlx_put_image_to_window(mlx_ptr, win_ptr, img_ptr, 0, 0);
 	mlx_loop(mlx_ptr);
-}*/
+}
 
 int 		main(int argc, char **argv)
 {
@@ -84,7 +84,7 @@ int 		main(int argc, char **argv)
 				}
 				i++;
 			}*/
-			//go(list);
+			go(tab);
 		}
 	}
 	else

@@ -44,8 +44,8 @@ void	ft_draw_line(t_img *img, t_color color, t_point a, t_point b)
 	else
 	{
 		if ((a.x >= b.x && a.y <= b.y) || (a.x >= b.x && a.y >= b.y))
-			ft_draw_line_deux(img, color, a, b);
-		else
 			ft_draw_line_deux(img, color, b, a);
+		else
+			ft_draw_line_deux(img, color, a, b);
 	}
 }
