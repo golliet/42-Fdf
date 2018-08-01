@@ -45,12 +45,12 @@ void		go(t_list ***tab, t_parse parse)
 	t_img	img;
 
 	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 500, 500, "ntm");
-	img_ptr = mlx_new_image(mlx_ptr, 500, 500);
+	win_ptr = mlx_new_window(mlx_ptr, 900, 500, "ntm");
+	img_ptr = mlx_new_image(mlx_ptr, 900, 500);
 
-	img.win_x = 500;
+	img.win_x = 900;
 	img.win_y = 500;
-	img.img_x = 500;
+	img.img_x = 900;
 	img.img_y = 500;
 	printf("x : %d\n", parse.nb_elem_line);
 	printf("y : %d\n", parse.nb_line);
@@ -61,19 +61,7 @@ void		go(t_list ***tab, t_parse parse)
 	img.zone_mem = (unsigned char *)mlx_get_data_addr(img_ptr, &img.bit_p, &img.size_line, &img.endian);
 
 	fill_true_coord(&tab, img);
-	//int i = 0;
-	//int j;
-	/*while (tab[i])
-	{
-		j = 0 ;
-		while (tab[i][j])
-		{
-			printf("%d %d %d\n", tab[i][j]->true_coord.x, tab[i][j]->true_coord.y, tab[i][j]->true_coord.z);
-			j++;
-		}
-		i++;
-	}*/
-	printf("ici\n");
+
 	put_pixel(tab, &img);
 	mlx_put_image_to_window(mlx_ptr, win_ptr, img_ptr, 0, 0);
 	mlx_loop(mlx_ptr);
