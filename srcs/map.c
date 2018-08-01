@@ -60,17 +60,13 @@ void		put_pixel(t_list ***map, t_img *img)
 		j = 0;
 		while (map[i][j + 1])
 		{
-			//printf("%d %d\n", i, j);
-			// si droite existe alors draw de ce point a celui de droite
-			//	printf("la\n");
-				if (map[i][j]->true_coord.z > 0)
-					ft_draw_line(img, (t_color){255,map[i][j]->true_coord.z * 50,0}, map[i][j]->true_coord, map[i][j + 1]->true_coord);
-				else
-					ft_draw_line(img, (t_color){255,255,255}, map[i][j]->true_coord, map[i][j + 1]->true_coord);
-			// si bas existe alors draw de ce point a celui de bas
+			if (map[i][j]->true_coord.z > 0 || map[i][j + 1]->true_coord.z > 0)
+				ft_draw_line(img, (t_color){255,map[i][j]->true_coord.z * 50,0}, map[i][j]->true_coord, map[i][j + 1]->true_coord);
+			else
+				ft_draw_line(img, (t_color){255,255,255}, map[i][j]->true_coord, map[i][j + 1]->true_coord);
 			if (map[i + 1] && map[i + 1][j])
 			{
-				if (map[i][j]->true_coord.z > 0)
+				if (map[i][j]->true_coord.z > 0 || map[i][j + 1]->true_coord.z > 0)
 				{
 					ft_draw_line(img, (t_color){255,0,map[i][j]->true_coord.z * 50}, map[i][j]->true_coord, map[i + 1][j]->true_coord);
 				}
