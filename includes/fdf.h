@@ -17,8 +17,12 @@ typedef struct			s_img
 	int					bit_p; // nombre d'octet par pixel
 	int					endian; // endian
 	int					size_line; // taille en octet d'une ligne en pixel
-	int					x;
-	int 				y;
+	int					img_x;
+	int 				img_y;
+	int					win_x;
+	int					win_y;
+	int					nb_elem_line;
+	int					nb_line;
 }						t_img;
 
 typedef struct			s_color
@@ -69,7 +73,14 @@ t_list			***ft_fill_tab(t_parse parse, t_list **list);
 */
 
 void			ft_draw_line(t_img *img, t_color color, t_point a, t_point b);
+void			put_pixel(t_list ***map, t_img *img);
 
+
+/*
+** Map
+*/
+
+void			fill_true_coord(t_list ****map, t_img img);
 
 /*
 ** Calcul

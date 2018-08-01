@@ -1,13 +1,13 @@
 NAME	= fdf
 
 # src / obj files
-SRC		= list.c main.c parse.c draw.c
+SRC		= list.c main.c parse.c draw.c map.c
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
 # compiler
 CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror -g
+CFLAGS	= -Wall -Wextra -Werror -g3
 
 # mlx library
 MLX		= ./minilibx/
