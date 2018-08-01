@@ -38,7 +38,7 @@ void		fill_true_coord(t_list ****map, t_img img)
 			y = (delta_y/2 * i);
 			z = (map2[i][j])->z;
 			(map2[i][j])->true_coord.x = cst1 * x - cst2 * y + img.win_x/3;
-			(map2[i][j])->true_coord.y = -z*2 + cst1/2 * x + cst2/2 * y + img.win_y/5;
+			(map2[i][j])->true_coord.y = -z*8 + cst1/2 * x + cst2/2 * y + img.win_y/5;
 			(map2[i][j])->true_coord.z = z;
 			j++;
 		}
