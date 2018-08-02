@@ -19,18 +19,14 @@ void		fill_true_coord(t_list ****map, t_img img)
 
 	map2 = *map;
 	i = 0;
-	printf("img x : %d elem line %d\n", img.img_x, img.nb_elem_line);
 	delta_x = img.size_line / img.nb_elem_line;
 	delta_y = img.img_y / img.nb_line;
 	// faire le delta z ici
-	printf("x: %d y: %d\n", delta_x, delta_y);
 	while (map2[i])
 	{
-		printf("la\n");
 		j = 0;
 		while (map2[i][j])
 		{
-			printf("x:%d y:%d\n", (map2[i][j])->x, (map2[i][j])->y);
 			int x;
 			int y;
 			int z;
@@ -39,14 +35,12 @@ void		fill_true_coord(t_list ****map, t_img img)
 			y = (delta_y/2 * i);
 			z = (map2[i][j])->z;
 			(map2[i][j])->true_coord.x = cst1 * x - cst2 * y + img.win_x/3;
-			(map2[i][j])->true_coord.y = -z*4 + cst1/4 * x + cst2/2 * y + img.win_y/5;
+			(map2[i][j])->true_coord.y = -z*4 + cst1/2 * x + cst2/2 * y + img.win_y/5;
 			(map2[i][j])->true_coord.z = (z < 0) ? -z : z;
 			j++;
 		}
 		i++;
 	}
-	printf("fin\n");
-	//*map = map2;
 }
 
 // algo d'affichage de map

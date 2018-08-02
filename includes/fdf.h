@@ -11,6 +11,8 @@
 ** structure
 */
 
+# define ESC 53
+
 typedef struct			s_img
 {
 	unsigned char		*zone_mem;
@@ -88,5 +90,11 @@ void			fill_true_coord(t_list ****map, t_img img);
 
 int				triangle(t_point p1, t_point p2);
 double			calc_length(int x1, int y1, int x2, int y2);
+
+/*
+** MISC
+*/
+
+void		malloc_failed(void);
 
 #endif

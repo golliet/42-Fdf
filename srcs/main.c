@@ -37,6 +37,17 @@ int			triangle(t_point p1, t_point p2)
 	}
 }
 
+int esc_hook(int keycode, void *param)
+{
+	if (keycode == ESC)
+	{
+		(void)param;
+		while (1);
+		exit(0);
+	}
+	return (1);
+}
+
 void		go(t_list ***tab, t_parse parse)
 {
 	void 	*mlx_ptr;
@@ -52,18 +63,15 @@ void		go(t_list ***tab, t_parse parse)
 	img.win_y = 500;
 	img.img_x = 900;
 	img.img_y = 500;
-	printf("x : %d\n", parse.nb_elem_line);
-	printf("y : %d\n", parse.nb_line);
 	img.nb_elem_line = parse.nb_elem_line;
 	img.nb_line = parse.nb_line;
-	printf("x : %d\n", img.nb_elem_line);
-	printf("y : %d\n", img.nb_line);
 	img.zone_mem = (unsigned char *)mlx_get_data_addr(img_ptr, &img.bit_p, &img.size_line, &img.endian);
 
 	fill_true_coord(&tab, img);
 
 	put_pixel(tab, &img);
 	mlx_put_image_to_window(mlx_ptr, win_ptr, img_ptr, 0, 0);
+	mlx_key_hook(win_ptr, esc_hook, tab);
 	mlx_loop(mlx_ptr);
 }
 
@@ -79,12 +87,12 @@ int 		main(int argc, char **argv)
 		parse.nb_elem_line = 0;
 		parse.nb_line = 0;
 		if (!ft_parse(argv[1], &list, &parse))
-			ft_putstr("PAS BON \n");
+			ft_putstr_fd("invalid file\n", 2);
 		else
 		{
 			if (!list)
 			{
-				ft_putstr_fd("erreur dev null", 2);
+				ft_putstr_fd("erreur null\n", 2);
 				exit(0);
 			}
 			tab = ft_fill_tab(parse, &list);
@@ -92,5 +100,5 @@ int 		main(int argc, char **argv)
 		}
 	}
 	else
-		ft_putstr("usage : \n"); // display usage
+		ft_putstr("usage : ./fdf + [file]\n"); // display usage
 }
