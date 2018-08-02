@@ -1,7 +1,7 @@
 
 #include "fdf.h"
 
-void ft_change_color(t_img *img, int x, int y, t_color color)
+void 		ft_change_color(t_img *img, int x, int y, t_color color)
 {
 	int nb;
 
@@ -47,10 +47,8 @@ void ft_change_color(t_img *img, int x, int y, t_color color)
 	}
 }
 
-void	ft_draw_line(t_img *img, t_color color, t_point a, t_point b)
+void		ft_draw_line(t_img *img, t_color color, t_point a, t_point b)
 {
-	(void)img;
-	(void)color;
 	if (!triangle(a, b))
 	{
 		if ((a.x >= b.x && a.y <= b.y) || (a.x >= b.x && a.y >= b.y))
@@ -60,9 +58,7 @@ void	ft_draw_line(t_img *img, t_color color, t_point a, t_point b)
 	}
 	else
 	{
-		//if ((a.x >= b.x && a.y <= b.y) || (a.x >= b.x && a.y >= b.y))
-		//	ft_draw_line_deux(img, color, b, a);
-		//else
-			ft_draw_line_deux(img, color, a, b);
+		ft_draw_line_deux(img, color, b, a);
+		ft_draw_line_deux(img, color, a, b);
 	}
 }

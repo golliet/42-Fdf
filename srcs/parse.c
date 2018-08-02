@@ -6,6 +6,12 @@ static int		ft_rank(int nb)
 	int i;
 
 	i = 0;
+	if (nb < 0)
+	{
+		nb = -nb;
+		i++;
+
+	}
 	while (nb > 1)
 	{
 		nb /= 10;
@@ -22,7 +28,7 @@ int		ft_lin_is_good(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if ((str[i] < '0' || str[i] > '9') && (str[i] != ' '))
+		if ((str[i] < '0' || str[i] > '9') && (str[i] != ' ') && (str[i + 1] && str[i] != '-' && ((str[i] < '0' || str[i] > '9'))))
 			return (0);
 		i++;
 	}
@@ -84,7 +90,7 @@ static void		ft_open(char *str, t_list **list, t_parse *parse)
 		free(lin);
 		y++;
 	}
-	parse->nb_line = y;
+	parse->nb_line = y - 1;
 	close(fd);
 }
 

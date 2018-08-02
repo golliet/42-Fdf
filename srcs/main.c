@@ -82,14 +82,11 @@ int 		main(int argc, char **argv)
 			ft_putstr("PAS BON \n");
 		else
 		{
-			ft_putstr("BON FICHIER\n");
 			if (!list)
 			{
 				ft_putstr_fd("erreur dev null", 2);
 				exit(0);
 			}
-			printf("x : %d\n", parse.nb_elem_line);
-			printf("y : %d\n", parse.nb_line);
 			tab = ft_fill_tab(parse, &list);
 			go(tab, parse);
 		}

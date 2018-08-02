@@ -26,10 +26,11 @@ void		fill_true_coord(t_list ****map, t_img img)
 	printf("x: %d y: %d\n", delta_x, delta_y);
 	while (map2[i])
 	{
+		printf("la\n");
 		j = 0;
 		while (map2[i][j])
 		{
-			//printf("x:%d y:%d\n", (map2[i][j])->x, (map2[i][j])->y);
+			printf("x:%d y:%d\n", (map2[i][j])->x, (map2[i][j])->y);
 			int x;
 			int y;
 			int z;
@@ -38,16 +39,36 @@ void		fill_true_coord(t_list ****map, t_img img)
 			y = (delta_y/2 * i);
 			z = (map2[i][j])->z;
 			(map2[i][j])->true_coord.x = cst1 * x - cst2 * y + img.win_x/3;
-			(map2[i][j])->true_coord.y = -z*8 + cst1/2 * x + cst2/2 * y + img.win_y/5;
-			(map2[i][j])->true_coord.z = z;
+			(map2[i][j])->true_coord.y = -z*4 + cst1/4 * x + cst2/2 * y + img.win_y/5;
+			(map2[i][j])->true_coord.z = (z < 0) ? -z : z;
 			j++;
 		}
 		i++;
 	}
+	printf("fin\n");
 	//*map = map2;
 }
 
 // algo d'affichage de map
+
+void		put_pixel_1(t_list ***map, t_img *img, int i, int j)
+{
+	if (map[i][j]->true_coord.z > 0 || map[i][j + 1]->true_coord.z > 0)
+		ft_draw_line(img, (t_color){255,map[i][j]->true_coord.z * 50,0}, map[i][j]->true_coord, map[i][j + 1]->true_coord);
+	else
+		ft_draw_line(img, (t_color){255,255,255}, map[i][j]->true_coord, map[i][j + 1]->true_coord);
+}
+
+void		put_pixel_2(t_list ***map, t_img *img, int i, int j)
+{
+	if (map[i + 1] && map[i + 1][j])
+	{
+		if (map[i][j]->true_coord.z > 0 || (map[i][j + 1] && map[i][j + 1]->true_coord.z > 0))
+			ft_draw_line(img, (t_color){255,0,map[i][j]->true_coord.z * 50}, map[i][j]->true_coord, map[i + 1][j]->true_coord);
+		else
+			ft_draw_line(img, (t_color){255,255,255}, map[i][j]->true_coord, map[i + 1][j]->true_coord);
+	}
+}
 
 void		put_pixel(t_list ***map, t_img *img)
 {
@@ -60,24 +81,17 @@ void		put_pixel(t_list ***map, t_img *img)
 		j = 0;
 		while (map[i][j + 1])
 		{
-			if (map[i][j]->true_coord.z > 0 || map[i][j + 1]->true_coord.z > 0)
-				ft_draw_line(img, (t_color){255,map[i][j]->true_coord.z * 50,0}, map[i][j]->true_coord, map[i][j + 1]->true_coord);
-			else
-				ft_draw_line(img, (t_color){255,255,255}, map[i][j]->true_coord, map[i][j + 1]->true_coord);
-			if (map[i + 1] && map[i + 1][j])
-			{
-				if (map[i][j]->true_coord.z > 0 || map[i][j + 1]->true_coord.z > 0)
-				{
-					ft_draw_line(img, (t_color){255,0,map[i][j]->true_coord.z * 50}, map[i][j]->true_coord, map[i + 1][j]->true_coord);
-				}
-				else
-				{
-					ft_draw_line(img, (t_color){255,255,255}, map[i][j]->true_coord, map[i + 1][j]->true_coord);
-				}
-			}
+			put_pixel_1(map, img, i, j);
+			put_pixel_2(map, img, i, j);
 			j++;
 		}
+		put_pixel_2(map, img, i, j);
 		i++;
-		//printf("ici ?\n");
+	}
+	j = 0;
+	while (map[i][j + 1])
+	{
+		put_pixel_1(map, img, i, j);
+		j++;
 	}
 }
