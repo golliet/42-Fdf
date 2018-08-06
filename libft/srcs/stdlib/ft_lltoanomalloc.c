@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lltoanomalloc.c                                    :+:      :+:    :+:   */
+/*   ft_lltoanomalloc.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: golliet <golliet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: golliet <golliet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/28 11:37:55 by golliet          #+#    #+#             */
-/*   Updated: 2018/05/16 10:44:14 by golliet         ###   ########.fr       */
+/*   Created: 2018/04/28 11:37:55 by golliet           #+#    #+#             */
+/*   Updated: 2018/08/06 14:13:37 by golliet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	sizen(long long n)
+static int		sizen(long long n)
 {
 	long long	nb;
 	int			count;
@@ -33,7 +33,7 @@ static int	sizen(long long n)
 	return (count);
 }
 
-void		lltoanomalloc(long long n, char *toadd)
+void			lltoanomalloc(long long n, char *toadd)
 {
 	int			i;
 	long long	nb;

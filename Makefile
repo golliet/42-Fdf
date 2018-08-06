@@ -1,7 +1,7 @@
 NAME	= fdf
 
 # src / obj files
-SRC		= list.c main.c parse.c draw.c map.c
+SRC		= list.c main.c parse.c draw.c map.c free.c
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 

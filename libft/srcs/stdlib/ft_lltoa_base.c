@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lltoa_base.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: golliet <golliet@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/11/09 17:10:00 by golliet           #+#    #+#             */
+/*   Updated: 2018/08/06 14:13:27 by golliet          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
+
 static int		ft_isllnegative(long long *n)
 {
 	if (*n < 0)
@@ -9,12 +22,12 @@ static int		ft_isllnegative(long long *n)
 	return (0);
 }
 
-char		*ft_lltoa_base(long long n, int base)
+char			*ft_lltoa_base(long long n, int base)
 {
 	long long	tmpn;
 	long long	len;
-	int		negative;
-	char	*str;
+	int			negative;
+	char		*str;
 
 	if (n == LONG_MIN)
 		return (ft_strdup("-9223372036854775807"));

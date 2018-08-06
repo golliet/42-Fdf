@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: golliet <golliet@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/08/06 09:50:22 by golliet           #+#    #+#             */
+/*   Updated: 2018/08/06 13:58:23 by golliet          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "fdf.h"
 
@@ -10,7 +21,6 @@ static int		ft_rank(int nb)
 	{
 		nb = -nb;
 		i++;
-
 	}
 	while (nb > 1)
 	{
@@ -18,21 +28,6 @@ static int		ft_rank(int nb)
 		i++;
 	}
 	return (i + 1);
-}
-
-/* Affiner cette fonction*/
-int		ft_lin_is_good(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		if ((str[i] < '0' || str[i] > '9') && (str[i] != ' ') && (str[i + 1] && str[i] != '-' && ((str[i] < '0' || str[i] > '9'))))
-			return (0);
-		i++;
-	}
-	return (1);
 }
 
 static int		ft_add_list(char *str, t_list **list, int y)
@@ -58,10 +53,19 @@ static int		ft_add_list(char *str, t_list **list, int y)
 	return (x);
 }
 
+static void		ft_frexit(t_list **list, int fd, char *lin)
+{
+	free_list(list);
+	ft_putstr_fd("invalid file\n", 2);
+	free(lin);
+	close(fd);
+	exit(0);
+}
+
 static void		ft_open(char *str, t_list **list, t_parse *parse)
 {
-	int 	fd;
-	int 	y;
+	int		fd;
+	int		y;
 	char	*lin;
 	int		x;
 
@@ -75,14 +79,7 @@ static void		ft_open(char *str, t_list **list, t_parse *parse)
 	while (get_next_line(fd, &lin) > 0)
 	{
 		if (!ft_lin_is_good(lin))
-		{
-
-			// free la liste
-			ft_putstr_fd("invalid file\n", 2);
-			free(lin);
-			close(fd);
-			exit(0);
-		}
+			ft_frexit(list, fd, lin);
 		x = ft_add_list(lin, list, y);
 		if (x > parse->nb_elem_line)
 			parse->nb_elem_line = x;
@@ -94,7 +91,7 @@ static void		ft_open(char *str, t_list **list, t_parse *parse)
 	close(fd);
 }
 
-int		ft_parse(char *str, t_list **list, t_parse *parse)
+int				ft_parse(char *str, t_list **list, t_parse *parse)
 {
 	int len;
 

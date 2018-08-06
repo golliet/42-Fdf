@@ -6,7 +6,7 @@
 /*   By: golliet <golliet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 08:47:09 by golliet           #+#    #+#             */
-/*   Updated: 2018/07/17 14:14:45 by golliet          ###   ########.fr       */
+/*   Updated: 2018/08/06 14:19:39 by golliet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ static int	ft_len_words(char const *s)
 	len = 0;
 	while (s[i])
 	{
-		if ((i == 0 && s[i] != ' ' && s[i] != '\t') || ((s[i] != ' ' && s[i] != '\t') && (s[i - 1] == ' ' || s[i - 1] == '\t')))
+		if ((i == 0 && s[i] != ' ' && s[i] != '\t') || ((s[i] != ' '
+				&& s[i] != '\t') && (s[i - 1] == ' ' || s[i - 1] == '\t')))
 			len++;
 		i++;
 	}
@@ -62,7 +63,8 @@ char		**ft_split_whitespaces(char const *s)
 	j = 0;
 	while (s[i])
 	{
-		if ((i == 0 && s[i] != ' ' && s[i] != '\t') || ((s[i] != ' ' && s[i] != '\t') && (s[i - 1] == ' ' || s[i - 1] == '\t')))
+		if ((i == 0 && s[i] != ' ' && s[i] != '\t') || ((s[i] != ' '
+		&& s[i] != '\t') && (s[i - 1] == ' ' || s[i - 1] == '\t')))
 		{
 			if (!(str[j] = ft_strdupi_w((s + i))))
 				return (NULL);

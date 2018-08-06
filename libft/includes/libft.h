@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: golliet <golliet@student.42.f    +#+  +:+       +#+        */
+/*   By: golliet <golliet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/08 16:52:17 by golliet           #+#    #+#             */
-/*   Updated: 2018/06/18 11:42:40 by golliet         ###   ########.fr       */
+/*   Created: 2018/08/06 14:04:53 by golliet           #+#    #+#             */
+/*   Updated: 2018/08/06 14:07:34 by golliet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,6 @@
 # include <limits.h>
 # include <unistd.h>
 
-typedef struct		s_listlibft
-{
-	void			*content;
-	size_t			content_size;
-	struct s_listlibft	*next;
-}					t_listlibft;
-
 typedef struct		s_stock_par
 {
 	int				size_param;
@@ -31,7 +24,6 @@ typedef struct		s_stock_par
 	char			*copy;
 	char			**tablb;
 }					t_stock_par;
-
 
 void				*ft_memset(void *b, int c, size_t len);
 void				*ft_memccpy(void *dst, const void *src, int c, size_t n);
@@ -114,8 +106,6 @@ char				**ft_split_whitespaces(char *str);
 char				**ft_split_whitespaces_spec(char *str);
 size_t				ft_sstrlen(char **str);
 int					get_next_line(int fd, char **line);
-t_listlibft			*ft_lstnew(void const *content, size_t content_size);
-void				ft_lstadd(t_listlibft **alst, t_listlibft *new);
 char				*ft_charcat(char *s1, const char s2);
 long long			ft_iterative_power(long long nb, long long power);
 char				*ft_chardup_spec(const char s1);
