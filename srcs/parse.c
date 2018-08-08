@@ -6,7 +6,7 @@
 /*   By: golliet <golliet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 09:50:22 by golliet           #+#    #+#             */
-/*   Updated: 2018/08/06 13:58:23 by golliet          ###   ########.fr       */
+/*   Updated: 2018/08/07 14:15:14 by golliet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static void		ft_open(char *str, t_list **list, t_parse *parse)
 	int		y;
 	char	*lin;
 	int		x;
+	int		rd;
 
 	x = 0;
 	y = 0;
@@ -76,7 +77,7 @@ static void		ft_open(char *str, t_list **list, t_parse *parse)
 		ft_putstr_fd("can't open files\n", 2);
 		exit(1);
 	}
-	while (get_next_line(fd, &lin) > 0)
+	while (rd = get_next_line(fd, &lin) > 0)
 	{
 		if (!ft_lin_is_good(lin))
 			ft_frexit(list, fd, lin);
@@ -86,7 +87,8 @@ static void		ft_open(char *str, t_list **list, t_parse *parse)
 		free(lin);
 		y++;
 	}
-	free(lin);
+	if (rd != -1)
+		free(lin);
 	parse->nb_line = y - 1;
 	close(fd);
 }

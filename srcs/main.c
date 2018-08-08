@@ -6,7 +6,7 @@
 /*   By: golliet <golliet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 09:49:59 by golliet           #+#    #+#             */
-/*   Updated: 2018/08/06 13:51:03 by golliet          ###   ########.fr       */
+/*   Updated: 2018/08/07 10:42:50 by golliet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void		go(t_list ***tab, t_parse parse)
 	t_var	var;
 
 	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 900, 500, "ntm");
+	win_ptr = mlx_new_window(mlx_ptr, 900, 500, "fdf");
 	img_ptr = mlx_new_image(mlx_ptr, 900, 500);
 	img.win_x = 900;
 	img.win_y = 500;
